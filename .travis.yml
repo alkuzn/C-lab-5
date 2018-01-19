@@ -1,0 +1,7 @@
+language: c
+compiler:
+ - gcc
+os:
+ - linux
+script:
+    gcc -std=c99 -o work/task1 work/task1.c work/main1.c && gcc -std=c99 -o work/task2 work/task2.c work/main2.c && gcc -std=c99 -o work/task3 work/task3.c work/main3.c && gcc -std=c99 -o work/task4 work/task1.c work/main4.c
