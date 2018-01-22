@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "task1.h"
 
 void relocPtr(char *words[], int numWords)
