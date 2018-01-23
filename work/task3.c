@@ -39,8 +39,8 @@ char * mixChars(char *in, char *out)
 
 char * mixLine(char *instr, char *outstr)
 {
-	char wordIn[BUF_SIZE] = { NULL };
-	char wordOut[BUF_SIZE] = { NULL };
+	char wordIn[SIZE] = { NULL };
+	char wordOut[SIZE] = { NULL };
 	char *outstrT = outstr, *pT = NULL, *pwT = NULL;
 	int i = 0, inWord = 0, count = 0;
 
