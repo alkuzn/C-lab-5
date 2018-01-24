@@ -6,7 +6,7 @@ char *mixChars(char *in ,char *out)// - перемешивание символов в одном слове
 {
 	int i = 0, j = 0, len = 0, flagChar = 0, countWord = 0, symbol = 0;
 	int k = 0;
-	char *midl[SIZE];
+	char midl[SIZE];//char *midl[SIZE];
 	char *result;
 	while (in[j++] != '\0');//look out end of string with '\n'
 	len = j - 1;
@@ -56,7 +56,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 		j++;
 	}
 	len = j - 1;
-	instr[j] = '\0';//shange '\n'to '\0'
+	instr[j] = '\0';//change '\n'to '\0'
 	for (j = 0;j <= len;j++)
 	{
 		if (flagChar == OUT && instr[j] != '\0')
