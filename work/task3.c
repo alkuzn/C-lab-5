@@ -12,8 +12,8 @@ char *mixChars(char *in ,char *out)// - перемешивание символов в одном слове
 	len = j - 1;
 	for (i = 0;i < len;i++)
 	{
-		midl[i] = &(*(in+i));
-		//((*midl)+i)[1] = '\0';
+		midl[i] = in[i];
+		
 	}
 	midl[i] = '\0';
 	countWord = i;
@@ -33,7 +33,7 @@ char *mixChars(char *in ,char *out)// - перемешивание символов в одном слове
 	}
 	// random each a later woth first and last symbols
 	for (i = 0;i<countWord;i++)
-		(out[i] = *(*(midl + i)));
+		(out[i] = midl[i]);
 		
 	out[i] = '\0';
 
@@ -71,7 +71,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 			{
 				mixChars(in, out);
 				strcpy(buf[i], out);
-				midl[i] = &buf[i];
+				midl[i] = buf[i];
 					i++;
 				flagChar = OUT;
 			}

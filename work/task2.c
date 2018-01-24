@@ -84,7 +84,7 @@ void setMatrix(char(*arr)[M])// - копирование элементов в другие области матрицы
 	int x2 = 0, y2 = 0;
 	int x3 = 0, y3 = 0;
 	int x4 = 0, y4 = 0;
-	char star = "*";
+	char star = '*';
 	//int limitY = M / 2;
 	for (y1 = 0;y1 <= limitY;y1++)
 	{
