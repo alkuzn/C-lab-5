@@ -6,6 +6,7 @@
  */
 #include <time.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define M_TASK2 16
 

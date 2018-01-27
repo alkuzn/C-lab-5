@@ -12,6 +12,7 @@
 #endif
 
 #include <time.h>
+#include <stdlib.h>
 #include "task2.h"
 
 
