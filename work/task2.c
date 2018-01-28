@@ -4,7 +4,7 @@
 #include <time.h>
 #include "task2.h"
 
-void clearMatrix(char(*arr)[M])
+void clearMatrix(char(*arr)[N])
 {
 	int i, j;
 	for (i = 0; i < M; i++)
@@ -16,7 +16,7 @@ void clearMatrix(char(*arr)[M])
 	}
 }
 
-void fillMatrix(char(*arr)[M])
+void fillMatrix(char(*arr)[N])
 {
 	srand(time(0));
 	int i = 0, m, n;
@@ -29,7 +29,7 @@ void fillMatrix(char(*arr)[M])
 	}
 }
 
-void setMatrix(char(*arr)[M])
+void setMatrix(char(*arr)[N])
 {
 	int i = 0, j = 0;
 	int m = M - 1;
@@ -45,7 +45,7 @@ void setMatrix(char(*arr)[M])
 	}
 }
 
-void printMatrix(char(*arr)[M])
+void printMatrix(char(*arr)[N])
 {
 	for (int i = 0; i < M; i++)
 	{
