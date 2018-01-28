@@ -22,7 +22,7 @@ char *mixLine(char *instr, char * outstr)
 			flag = IN;
 			bufin = &instr[i];
 		}
-		else if ((instr[i] == ' ' && flag == IN)||(instr[i] == '\n' && flag == IN))
+		else if ((instr[i] == ' ' && flag == IN)||(instr[i] == '\0' && flag == IN))
 		{
 			flag = OUT;
 			bufout = &instr[i-1];
