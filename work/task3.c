@@ -7,7 +7,7 @@ char *mixChars(char *in ,char *out)// - перемешивание символов в одном слове
 	int i = 0, j = 0, len = 0, flagChar = 0, countWord = 0, symbol = 0;
 	int k = 0;
 	char midl[SIZE];//char *midl[SIZE];
-	char *result;
+	char result=' ';
 	while (in[j++] != '\0');//look out end of string with '\n'
 	len = j - 1;
 	for (i = 0;i < len;i++)
@@ -15,27 +15,28 @@ char *mixChars(char *in ,char *out)// - перемешивание символов в одном слове
 		midl[i] = in[i];
 		
 	}
-	midl[i] = '\0';
+	midl[i] =NULL;
 	countWord = i;
 	srand(time(0));
 	if (i > 3)//condition for the word more that 3 leters
 	{
-		for (k = (countWord-1);k > 2;k--)// random dont first letter 
+		for (k = (countWord - 1);k > 2;k--)// random dont first letter 
 		{
 			j = k - 2;
 			i = k - 1;
 			while ((symbol = rand() % j + 1) == k);//don't last letter
-				
 			result = midl[i];
 			midl[i] = midl[symbol];
 			midl[symbol] = result;
+			
+		
 		}
 	}
 	// random each a later woth first and last symbols
 	for (i = 0;i<countWord;i++)
 		(out[i] = midl[i]);
 		
-	out[i] = '\0';
+	out[i] = NULL;
 
 	return out;
 }
@@ -46,7 +47,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 	char *midl[SIZE];
 	char buf[SIZE][SIZE];
 	char *result;
-	char *bufOut;
+	
 	char out[SIZE];
 	char *in;
 	while (instr[j] != '\n')//look out end of string with '\n'
@@ -77,13 +78,14 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 			}
 		}
 	}
-	midl[i] = '\0';
+	midl[i] = NULL;
 	countWord = i;
 	srand(time(0));
 
 	
 	if (countWord == 2)//random condition for only two words
 	{
+		
 		result = midl[1];
 		midl[1] = midl[0];
 		midl[0] = result;
@@ -102,7 +104,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 
 	for (i = countWord = 0;midl[countWord] != NULL;countWord++)
 	{
-		for (j = 0;((*(midl + countWord))[j]) != NULL;j++)
+		for (j = 0;(midl [countWord][j]) != NULL;j++)
 		{
 			outstr[i++] = (*(midl + countWord))[j];
 		}

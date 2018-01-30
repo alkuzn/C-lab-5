@@ -28,7 +28,7 @@ char *randomWords(char *in, char *out)
 			}
 		}
 	}
-	midl[i] = '\0';
+	midl[i] = NULL;
 	countWord = i ;
 	srand(time(0));
 	if (countWord == 2)//random condition for only two words
