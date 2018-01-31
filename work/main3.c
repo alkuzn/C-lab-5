@@ -7,7 +7,6 @@
 #define SIZEM 128
 #define LSTR 512
 
-
 int main(int argc, char * argv[])
 {
 	char fin[256] = { 0 };
@@ -36,10 +35,12 @@ int main(int argc, char * argv[])
 	}
 	}
 
-	FILE *mf;
-	char *str[SIZEM];	//Массив указателей на строки	
-	mf = fopen(fin, "r");
-	if (mf == NULL) //Проверка наличия файла и его открытия
+	FILE *fp;
+	char *in[SIZEM];	//Массив указателей на строки входной
+	char *out[SIZEM];	//Массив указателей на строки выходной
+
+	fp = fopen(fin, "r");
+	if (fp == NULL) //Проверка наличия файла и его открытия
 	{
 		printf("error open file in\n");
 		return -1;
@@ -49,16 +50,18 @@ int main(int argc, char * argv[])
 	{
 		char *stroka;	//Указатель на строку
 		stroka = (char*)malloc(LSTR * sizeof(char));	//Выделяем память под строку и записываем адрес в указатель		
-		str[i] = fgets(stroka, LSTR, mf);	//Чтение одной строки из файла
-		stroka[strlen(stroka) - 1] = '\0';
+		in[i] = fgets(stroka, LSTR, fp);	//Чтение одной строки из файла
+
+		//stroka[strlen(stroka)] = '\0';
+		
 		//Проверка на конец файла или ошибку чтения
-		if (str[i] == NULL)
+		if (in[i] == NULL)
 		{
 			// Проверяем, что именно произошло: кончился файл или это ошибка чтения
-			if (feof(mf) != 0)
+			if (feof(fp) != 0)
 			{
 				//Если файл закончился, выводим сообщение о завершении чтения и выходим из бесконечного цикла
-				printf("read end file in\n");
+				//printf("read end file in\n");
 				break;
 			}
 			else
@@ -69,12 +72,34 @@ int main(int argc, char * argv[])
 			}
 		}
 	} 
-	char in[] = "HomeWork Helloy goodbui\0";
-	char out[128];
-	mixLine(in, out);
-	printf("%s\n", in);
-	printf("%s\n", out);
+	//Закрытие файла
+	//printf("close file in\n");
+	if (fclose(fp) == EOF)
+	{
+		printf("error close file in\n");
+	}
+	//Открываем выходной файл
+	fp = fopen(fout, "w");
+	if (fp == NULL)
+	{
+		//printf("error open file out\n");
+		return -1;
+	}
+
+	//Содаём массив указателей на строки out. Передаём массивы указателей для перемешивания
+	for (int j = 0; j < i; j++)
+	{
+		char *stroka;	//Указатель на строку
+		stroka = (char*)malloc(LSTR * sizeof(char));
+		out[j] = stroka;	
+		mixLine(in[j], out[j]);//Передаём указатели на строки для перемешивания
+		fwrite(out[j], sizeof(char), strlen(out[j]), fp);
+		//fputc('\n', fp);
+	}
+	//Закрываем выходной файл
+	if (fclose(fp) == EOF)
+	{
+		printf("error close file out\n");
+	}
 	return 0;
 }
-
-

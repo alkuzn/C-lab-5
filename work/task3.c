@@ -1,4 +1,6 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 //Перемешивание массива символов (перемешивание символов в одном 
@@ -11,7 +13,7 @@ char *mixChars(char *in, char *out)
 	char buf;	//Буферная переменная
 	int n; //Длинна слова
 	//Вычисляем длинну слова
-	for (n = 0; out[n] != ' ' && out[n] != '\0' && out[n] != '\n'; n++);
+	for (n = 0; out[n] != ' ' && out[n] != '\0' && out[n] != '\n' && out[n] != '.' && out[n] != ','; n++);
 	//Выполняем перемешивание
 	for (i = 1; i < n - 2; i++)
 	{
@@ -25,7 +27,7 @@ char *mixChars(char *in, char *out)
 
 char *mixLine(char *instr, char * outstr)	//перемешивание для целой строки
 {
-	for (int i = 0; instr[i] != '\0' && instr[i] != '\n'; i++)
+	for (int i = 0; instr[i - 1] != '0' && instr[i - 1] != '\0'; i++)
 	{
 		if (instr[i] != ' ' && (i == 0 || instr[i - 1] == ' '))
 		{
