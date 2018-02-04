@@ -72,18 +72,14 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 	
 	char out[SIZE];
 	char *in;
+	if (p[strlen(p) - 1] == '\n')
+		p[strlen(p) - 1] = '\0';
 	while (p[j] != 0)//look out end of string with '\n'
 	{
-		if (p[j] == '\n')
-		{
-			p[j] = '\0';
-			continue;
-		}
-		if (p[j] == ' ')
-			p[j] = 0;
+		if (p[j] == ' ')  p[j] = 0;
 		j++;
 	}
-	len = j - 1;
+	len = j ;
 	for (j = 0;j <= len;j++)
 	{
 		if (flagChar == OUT && p[j] != '\0')
@@ -107,7 +103,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 	}
 	midl[i] = NULL;
 	countWord = i;
-	//srand(time(0));
+	srand(time(0));
 
 	
 	if (countWord == 2)//random condition for only two words
@@ -140,8 +136,8 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 		outstr[i++] = ' ';
 
 	}
-	outstr[i++] = '\n';
-	outstr[i] = '\0';
+	outstr[--i] = '\n';
+	outstr[++i] = '\0';
 	//free(p);
 	return outstr;
 }
