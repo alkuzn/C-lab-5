@@ -5,27 +5,27 @@
 #include <stdio.h>
 #define ITER 3
 
-void clearMatrix(char *arr[])	//заполнение двумерного массива(матрицы) пробелами
+void clearMatrix(char *arr[], int size)	//заполнение двумерного массива(матрицы) пробелами
 {
-	char buf[51] = { ' ' };
+	/*char buf[51] = { ' ' };
 	for (int i = 0; i < SIZE; i++)
 	{
 		strcpy(arr[i], buf);
-	}
-	/*for (int i = 0; i < SIZE - 1; i++)
+	}*/
+	for (int i = 0; i < size; i++)
 	{
-		for (int j = 0; j < SIZE; j++)
+		for (int j = 0; j < size; j++)
 		{
 			arr[i][j] = ' ';
 		}
-		arr[i][strlen(arr[i])] = '\0';
-	}*/
+		arr[i][size] = '\0';
+	}
 }
-
-void fillMatrix(char *arr[])	//заполнение верхнего левого квадранта матрицы звездочками
+/*
+void fillMatrix(char *arr[], int size)	//заполнение верхнего левого квадранта матрицы звездочками
 {
-	int h = SIZE / 2;
-	int w = SIZE / 2 - 1;
+	int h = size / 2;
+	int w = size / 2 - 1;
 	for (int i = 0, j = 0, count = 0; count < ITER; count++)
 	{
 		i = rand() % (w - 5);
@@ -61,6 +61,7 @@ void fillMatrix(char *arr[])	//заполнение верхнего левого квадранта матрицы звез
 		}
 	}
 }
+*/
 /*
 void setMatrix(char(*arr)[M])	//копирование элементов в другие области матрицы
 {
