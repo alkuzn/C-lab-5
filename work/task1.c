@@ -16,18 +16,13 @@ char *randomWords(char const *in, char *out)
 	strcpy(buf, in);
 	char *midl[SIZE];
 	char *result;
-
+	if (buf[strlen(buf) - 1] == '\n')
+		buf[strlen(buf) - 1] = '\0';
 	for (j = 0;buf[j] != '\0';j++)//look out end of string with '\n'
 	{
-		if (buf[j] == '\n')
-		{
-			buf[j] = '\0';
-			--j;// need for compensation next loop
-		}
-		if (buf[j] == ' ')
-			buf[j] = '\0';
+		if (buf[j] == ' ')	buf[j] = '\0';
 	}
-	len = j - 1;
+	len = j ;
 	if (0 >= len){
 		strcpy(out, buf);
 		return out;

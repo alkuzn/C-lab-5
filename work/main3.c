@@ -12,7 +12,7 @@ int main()
 	char buf[SIZE];
 	char outstr[SIZE];
 	char c = 0;
-	char *p;
+	char *p = "\n";
 	FILE *fp = fopen("fp.txt", "r");
 	FILE *fpFinal = fopen("fpFinal.txt", "w");
 	if (fpFinal == NULL|| fp == NULL)
@@ -28,9 +28,10 @@ int main()
 		if (c == '\0' || c == '\n')
 		{
 			buf[i] = '\0';
-			//char *buf1 = " papa love mama and sons";//need for test
+			//char *buf1 = "mad max";//need for test
 			mixLine(buf, outstr);
 			fputs(outstr, fpFinal);
+			fputs(p, fpFinal);
 			i = 0;
 		}
 	} while (c != EOF);

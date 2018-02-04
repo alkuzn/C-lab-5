@@ -80,6 +80,10 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 		j++;
 	}
 	len = j ;
+	if (0 >= len) {
+		strcpy(outstr, p);
+		return outstr;
+	}
 	for (j = 0;j <= len;j++)
 	{
 		if (flagChar == OUT && p[j] != '\0')
@@ -136,8 +140,8 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 		outstr[i++] = ' ';
 
 	}
-	outstr[--i] = '\n';
-	outstr[++i] = '\0';
+	//outstr[--i] = '\n';
+	outstr[--i] = '\0';
 	//free(p);
 	return outstr;
 }
