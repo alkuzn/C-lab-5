@@ -1,12 +1,17 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "task3.h"
-//#include<stdio.h>
-//#define SIZE 100
+#define SIZE 512
+#define OUT 0
+#include<stdio.h>
+#include<string.h>
+#include<time.h>
+#include<stdlib.h>
 int main()
 {
 	int i = 0, len = 0, j = 0,k=0,z=0;
-	char buf[SIZE] = { 0 };
+	char buf[SIZE];
 	char outstr[SIZE];
+	char c = 0;
 	char *p;
 	FILE *fp = fopen("fp.txt", "r");
 	FILE *fpFinal = fopen("fpFinal.txt", "w");
@@ -16,15 +21,19 @@ int main()
 		return -1;
 	}else printf("Open file fp.txt: \n");
 	
-	while (fgets(buf, SIZE, fp) != NULL)
-	{
-		p = mixLine(buf,outstr);
-		
-
-			
-		fputs(p,fpFinal);
-	}
-	;
+	
+	do {
+		c = fgetc(fp);
+		buf[i++]= c;
+		if (c == '\0' || c == '\n')
+		{
+			buf[i] = '\0';
+			//char *buf1 = " papa love mama and sons";//need for test
+			mixLine(buf, outstr);
+			fputs(outstr, fpFinal);
+			i = 0;
+		}
+	} while (c != EOF);
 	fclose(fpFinal);
 	fclose(fp);
 	return 0;

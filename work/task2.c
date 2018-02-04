@@ -1,5 +1,14 @@
 #include "task2.h"
-//#define M 40
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define SIZE 100
+#define M 61// weight or 'x'
+#define N 20//height or 'y'
+#define limitX  (M/ 2)
+#define limitY (N/ 2)
+#define LIMITunit 15//(M / 2*(M*10/20))
+#define STAR '*'
 void printUnit(char(*arr)[M], int y, int x)
 {
 	if ((x > 0 || x < limitX) && (y>0 || y < limitY))
@@ -60,22 +69,20 @@ void fillMatrix(char(*arr)[M])// - заполение верхнего левого квадранта матрицы з
 	{
 	x = rand() % limitX;
 	y = rand() % limitY;
-	switch (rand() % 3)
-	{
-	case 0:
-	romb(arr, y, x);
-		break;
-	case 1:
-	krest(arr, y, x);
-	break;
-	case 2:
-		zvezda(arr, y, x);
-		break;
-	}
+		switch (rand() % 3)
+		{
+		case 0:
+			romb(arr, y, x);
+			break;
+		case 1:
+			krest(arr, y, x);
+			break;
+		case 2:
+			zvezda(arr, y, x);
+			break;
+		}
 
-	 
-	;
-}
+	}
 
 }
 void setMatrix(char(*arr)[M])// - копирование элементов в другие области матрицы

@@ -1,29 +1,49 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "task1.h"
-char *randomWords(char *in, char *out)
+#define SIZE 512
+#define OUT 0
+#define IN 1
+#include<stdio.h>
+#include<string.h>
+#include<time.h>
+#include<stdlib.h>
+char *randomWords(char const *in, char *out)
 {
-	int i = 0, j = 0,len=0,flagChar=0,countWord=0,symbol=0;
+	int i = 0, j = 0, len = 0, flagChar = 0, countWord = 0, symbol = 0;
 	int k = 0;
-	char buf = 0;
+	char* buf = (char*)malloc(strlen(in) * sizeof(char));
+	char out1[512];
+	strcpy(buf, in);
 	char *midl[SIZE];
 	char *result;
-	while (in[j]!='\n')//look out end of string with '\n'
+
+	for (j = 0;buf[j] != '\0';j++)//look out end of string with '\n'
 	{
-		if (in[j] ==' ')
-			in[j] = '\0';
-		j++;
+		if (buf[j] == '\n')
+		{
+			buf[j] = '\0';
+			--j;// need for compensation next loop
+		}
+		if (buf[j] == ' ')
+			buf[j] = '\0';
 	}
 	len = j - 1;
-    in[j] = '\0';//shange '\n'to '\0'
+	if (0 >= len){
+		strcpy(out, buf);
+		return out;
+}
+	//buf[j] = NULL;//change '\n'to '\0'
 	for (j = 0;j <= len;j++)
 	{
-		if (flagChar == OUT && in[j] != '\0')
+		if (flagChar == OUT && buf[j] != '\0')
 		{
-			midl[i++] = &in[j];
+			midl[i++] = &buf[j];
 			flagChar++;
 		}
 		else
 		{
-			if (in[j] == '\0') {
+			if ((buf[j] == '\0')&&(flagChar==IN))
+			{
 				flagChar = OUT;
 			}
 		}
@@ -46,17 +66,29 @@ char *randomWords(char *in, char *out)
 			midl[i]=midl[symbol];
 			midl[symbol] = result;
 	}
-
-	for (i=countWord=0;midl[countWord] != NULL;countWord++)
+	i=len= (strlen(out1));
+	/*for (out[i];i>=0;i--)
 	{
-		for (j=0;((*(midl+countWord))[j])!=NULL;j++)
-		{
-			out[i++] = (*(midl + countWord))[j];
-		}
-		out[i++] = ' ';
-	
+		out[i]= '\0';
 	}
-	out[i] = '\0';
+	*/
+	
+	for (i=countWord=0,len=0;midl[countWord] != NULL;countWord++)
+	{
+		while ((out1[i++] = *(midl[countWord])++)!= '\0')
+		{
+			//out1[i++] = *(midl[countWord]);continue;
+		}
+
+			out1[i-1] = ' ';
+			//strcat(out, midl[countWord]);
+		//strcat(out, " ");
+		//len += strlen(midl[countWord]) + 1;
+	}
+	out1[i-1] = '\0';
+	strcpy(out, out1);
+	//free(buf);
+	//buf = NULL;
 	return out;
 }
 

@@ -1,23 +1,41 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "task3.h"
-
-
+#define SIZE 512
+#define OUT 0
+#define IN 1
+#include<stdio.h>
+#include<string.h>
+#include<time.h>
+#include<stdlib.h>
+int check2part(int diff,char *in, char *out)
+{
+	if (*in==0 || *out==0)
+		return *in;
+	else return check2part(diff - *in + *out,in+1, out+1);
+	
+}
 
 char *mixChars(char *in ,char *out)// - перемешивание символов в одном слове
 {
 	int i = 0, j = 0, len = 0, flagChar = 0, countWord = 0, symbol = 0;
+	int diff = 0;// need for check of true mix letter
 	int k = 0;
+	
+	char *p = (char*)malloc(strlen(in) * sizeof(char));
+	strcpy(p, in);
 	char midl[SIZE];//char *midl[SIZE];
 	char result=' ';
-	while (in[j++] != '\0');//look out end of string with '\n'
+	while (p[j++] != '\0');//look out end of string with '\n'
 	len = j - 1;
 	for (i = 0;i < len;i++)
 	{
-		midl[i] = in[i];
+		midl[i] = p[i];
 		
 	}
-	midl[i] =NULL;
+	midl[i] =0;
+	
 	countWord = i;
-	srand(time(0));
+	//srand(time(0));
 	if (i > 3)//condition for the word more that 3 leters
 	{
 		for (k = (countWord - 1);k > 2;k--)// random dont first letter 
@@ -31,12 +49,13 @@ char *mixChars(char *in ,char *out)// - перемешивание символов в одном слове
 			
 		
 		}
+		
 	}
 	// random each a later woth first and last symbols
 	for (i = 0;i<countWord;i++)
 		(out[i] = midl[i]);
 		
-	out[i] = NULL;
+	out[i] = 0;
 
 	return out;
 }
@@ -44,33 +63,41 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 {
 	int i = 0, j = 0, len = 0, flagChar = 0, countWord = 0, symbol = 0;
 	int k = 0;
+	int diff = 0;
+	char *p = (char*)malloc(strlen(instr) * sizeof(char));
+	strcpy(p, instr);
 	char *midl[SIZE];
 	char buf[SIZE][SIZE];
 	char *result;
 	
 	char out[SIZE];
 	char *in;
-	while (instr[j] != '\n')//look out end of string with '\n'
+	while (p[j] != 0)//look out end of string with '\n'
 	{
-		if (instr[j] == ' ')
-			instr[j] = '\0';
+		if (p[j] == '\n')
+		{
+			p[j] = '\0';
+			continue;
+		}
+		if (p[j] == ' ')
+			p[j] = 0;
 		j++;
 	}
 	len = j - 1;
-	instr[j] = '\0';//change '\n'to '\0'
 	for (j = 0;j <= len;j++)
 	{
-		if (flagChar == OUT && instr[j] != '\0')
+		if (flagChar == OUT && p[j] != '\0')
 		{
-			in = &instr[j];
+			in = &p[j];
 			flagChar++;
 
 		}
 		else
 		{
-			if (instr[j] == '\0')
+			if ((p[j] == '\0')&&(flagChar==IN))
 			{
 				mixChars(in, out);
+				
 				strcpy(buf[i], out);
 				midl[i] = buf[i];
 					i++;
@@ -80,7 +107,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 	}
 	midl[i] = NULL;
 	countWord = i;
-	srand(time(0));
+	//srand(time(0));
 
 	
 	if (countWord == 2)//random condition for only two words
@@ -90,6 +117,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 		midl[1] = midl[0];
 		midl[0] = result;
 	}
+
 	for (;countWord >2;countWord--)// random for two and more words
 	{
 		j = countWord - 2;
@@ -99,20 +127,21 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 		midl[i] = midl[symbol];
 		midl[symbol] = result;
 	}
-	// random each a later woth first and last symbols
+
+	// random each a later exept first and last symbols
 	
 
 	for (i = countWord = 0;midl[countWord] != NULL;countWord++)
 	{
-		for (j = 0;(midl [countWord][j]) != NULL;j++)
+		for (j = 0;(midl [countWord][j]) != '\0';j++,i++)
 		{
-			outstr[i++] = (*(midl + countWord))[j];
+			outstr[i] = (*(midl + countWord))[j];
 		}
 		outstr[i++] = ' ';
 
 	}
 	outstr[i++] = '\n';
 	outstr[i] = '\0';
-	
+	//free(p);
 	return outstr;
 }
