@@ -30,6 +30,7 @@ int main(){
 	}
 	fclose(fp);
 
+	srand(time(NULL));
 	fp = fopen("result","w");
 	for (int i = 0; i < count; i++){
 		mixLine(arr[i], out_not_needed);

@@ -9,7 +9,6 @@
 char * mixChars(char *in, char *out){
 	char buff;
 	int count = 0;
-	int index = 0;
 	int rand_index = 0;
 	while ( in[count] != ' ' && in[count] != '\0'){
 		count++;
