@@ -27,9 +27,9 @@ int main()
 		{
 			fgets(in, M, fp);
 			if (in[strlen(in) - 1] == '\n')
-				in[strlen(in - 1)] = '\0';
+				in[strlen(in) - 1] = '\0';
 			mixLine(in, out);
-			fprintf(wp, "%s", out);
+			fprintf(wp, "%s\n", out);
 			for (i = 0; i < M; i++)
 			{
 				in[i] = 0;

@@ -13,30 +13,39 @@ char *mixLine(char *instr, char * outstr)
 	int i = 0, j = 0;
 	int n = 0;
 	int count = 0;
-	char *bufin;
-	char *bufout;
+	char bufin[20] = { 0 };
+	char bufout[20] = { 0 };
 	while (instr[i] != '\0')
 	{
 		if (instr[i] != ' ' && flag == OUT)
 		{
 			flag = IN;
-			bufin = &instr[i];
+			bufin[j++] = instr[i];
+			count++;
 		}
-		else if ((instr[i] == ' ' && flag == IN)||(instr[i] == '\0' && flag == IN))
+		else if (instr[i] != ' ' && flag == IN)
+		{
+			bufin[j++] = instr[i];
+			count++;
+		}
+		else if (instr[i] == ' ' && flag == IN)
 		{
 			flag = OUT;
-			bufout = &instr[i-1];
+			bufin[j] = '\0';
 			mixChars(bufin, bufout);
-			j++;
+			for (j = 0; j < count; j++)
+				outstr[n++] = bufout[j];
+			j = 0;
+			count = 0;
+			outstr[n++] = ' ';
 		}
 		i++;
 	}
-	i = 0;
-		while (instr[i] != '\0')
-		{
-			outstr[i] = instr[i++];
-		}
-	outstr[i] = '\0';
+	bufin[j] = '\0';
+	mixChars(bufin, bufout);
+	for (j = 0; j < count; j++)
+		outstr[n++] = bufout[j];
+	outstr[n] = '\0';
 	return outstr;
 }
 
@@ -44,17 +53,25 @@ char *mixLine(char *instr, char * outstr)
 char *mixChars(char *in, char *out)
 {
 	srand(time(0));
-	int i = 1;
-	int sword = out - in;
+	int i = 0;
+	int sword = 0;
+	int j = 0;
 	char cword = 0;
-	int j = 0, k = 0;
-	for (int i = 0; i < sword-1; i++)
+
+	while (in[sword] != '\0')
 	{
-		j = rand() % (sword-1) + 1;
-		k = rand() % (sword-1) + 1;
-			cword = in[j];
-			in[j] = in[k];
-			in[k] = cword;
+		out[sword] = in[sword++];
 	}
-	return in;
+	out[sword] = '\0';
+	if (sword > 3)
+	{
+		for (int i = 1; i < sword - 1; i++)
+		{
+			j = rand() % (sword - 2) + 1;
+			cword = out[i];
+			out[i] = out[j];
+			out[j] = cword;
+		}
+	}
+	return out;
 }
