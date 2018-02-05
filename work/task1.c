@@ -7,7 +7,7 @@
 #define IN 1
 #define OUT 0
 
-char randomizer(char *words[], int counter)     // change positions of words
+void randomizer(char *words[], int counter)     // change positions of words
 {
 	int tmp = 0;
 	char *temp = NULL;
@@ -20,7 +20,6 @@ char randomizer(char *words[], int counter)     // change positions of words
 		words[counter - 1] = temp;
 		counter--;
 	}
-	return words;
 }
 
 char *randomWords(char *in, char *out) 
