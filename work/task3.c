@@ -110,7 +110,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 	srand(time(0));
 
 	
-	if (countWord == 2)//random condition for only two words
+	/*if (countWord == 2)//random condition for only two words
 	{
 		
 		result = midl[1];
@@ -126,7 +126,7 @@ char *mixLine(char *instr, char *outstr)// - перемешивание для целой строки
 		result = midl[i];
 		midl[i] = midl[symbol];
 		midl[symbol] = result;
-	}
+	}*/
 
 	// random each a later exept first and last symbols
 	
