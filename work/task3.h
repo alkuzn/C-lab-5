@@ -4,7 +4,7 @@
 #include <string.h>
 #include <time.h>
 #define N 256
-#define M 50
+#define K 50
 #define IN 1
 #define OUT 0
 

@@ -23,8 +23,8 @@ char *mixChars(char *in, char *out)
 
 char *mixLine(char *instr, char * outstr)
 {
-	char word[M];
-	char out[M];
+	char word[K];
+	char out[K];
 	int flag = OUT;
 	int i = 0;
 	char* temp = outstr;
