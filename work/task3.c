@@ -4,13 +4,9 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define IN 1
-#define OUT 0
 
 char *mixChars(char *in,char *out)
 {
- //   printf("mixChars:\n");
-    srand((unsigned)time(NULL));
     int j=1,len=0,index=1;
     char temp=0;
     char *Pin=in;
@@ -45,8 +41,8 @@ char *mixChars(char *in,char *out)
 char *mixLine(char *instr,char *outstr)
 {
  
-    char wordIn[N]={0};
-    char wordOut[N]={0};
+    char wordIn[NUM]={0};
+    char wordOut[NUM]={0};
     char *P_out=outstr;
     char *p_wordOut=NULL;
     
@@ -77,7 +73,7 @@ char *mixLine(char *instr,char *outstr)
     
     
     
-    char *words[N]={0};
+    char *words[NUM]={0};
    
     char *sep=" ;:.,!?";
     words[i]=strtok(instr,sep);
@@ -98,50 +94,37 @@ char *mixLine(char *instr,char *outstr)
     for(i=0;i<numWords;i++)
     {
         p_words=words[i];
+        wordOut[i]=*p_words;
        
+        
  
-    // mixChars(p_words,wordOut);
+   mixChars(p_words,wordOut);
       
-printf("%s",  mixChars(p_words, wordOut));
- 
-         p_wordOut=&wordOut[i];
-      
-     
-           p_wordOut=&wordOut[i];
-            if(*p_wordOut==p_wordOut[strlen(p_wordOut)])
-                 *p_wordOut++=' ';
-             *P_out++=*p_wordOut++;
-            
 
+        for(j=0;j<numWords;j++)
+           P_out=&wordOut[j];
+        
+ 
+        
+        *P_out='\0';
+        *P_out='\n';
+     //   *P_out++=' ';
+       
+
+    if(*p_words==p_words[strlen(p_words)])
+       *p_words++=' '; //??
      
         
-   for(int j=0;j<strlen((char*)words);j++)
-   {    p_wordOut=*(words+j);
-       *P_out++=(*p_wordOut)++;
-         *P_out++=' ';
-     }
-    
-        
+        strcat(P_out,p_words);
     }
-       while (*instr!='\0')
-       {
-   
-            *P_out++=*p_wordOut++;
-          
-       }
     
-   
-    
-    *P_out='\0';
-   *P_out='\n';
-
-    
-    
+  
+  
 
    outstr=P_out;
     
-   // printf("p_out: %s\n",(char*)P_out);
-    printf("str: %s\n",(char*)outstr);
+ 
+   printf("str: %s\n",(char*)outstr);
     
     
     return outstr;

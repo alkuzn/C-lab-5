@@ -9,9 +9,10 @@
     
 int main()
 {
+     srand((unsigned)time(NULL));
     
-    char strIn[N]={0};
-    char strOut[N]={0};
+    char strIn[NUM]={0};
+    char strOut[NUM]={0};
     
     FILE *input_F = fopen ("in.txt", "r");
    FILE *output_F = fopen("out.txt", "w");
@@ -24,7 +25,7 @@ int main()
     }
     
     
-    while(fgets(strIn,N,input_F)!=NULL)
+    while(fgets(strIn,NUM,input_F)!=NULL)
     {
         fputs(mixLine(strIn,strOut),output_F);
         if(*strIn!='\n')
