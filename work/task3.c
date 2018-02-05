@@ -4,8 +4,9 @@
  *  Created on: 18 янв. 2018 г.
  *      Author: michael
  */
+#include <stdlib.h>
 
-void mixChars(char *in){
+char * mixChars(char *in, char *out){
 	char buff;
 	int count = 0;
 	int index = 0;
@@ -22,17 +23,23 @@ void mixChars(char *in){
 		in[count] = in[rand_index];
 		in[rand_index] = buff;
 	}
+
+	out = in;
+	return out;
 }
 
-void mixLine(char *instr){
+char * mixLine(char *instr, char *outstr){
 	int in_word = 0;
 	for(int i = 0; instr[i] != '\0'; i++){
 		if(instr[i] != ' ' && in_word == 0){
 			in_word = 1;
-			mixChars(instr+i);
+			mixChars(instr+i, outstr);
 		}else if(instr[i] == ' ' && in_word == 1){
 			in_word = 0;
 		}
 	}
+
+	outstr = instr;
+	return outstr;
 }
 

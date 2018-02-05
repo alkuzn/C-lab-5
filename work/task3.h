@@ -12,5 +12,5 @@
 
 #endif /* TASK3_H_ */
 
-char *mixChars(char *in);
-char *mixLine(char *instr);
+char *mixChars(char *in, char *out);
+char *mixLine(char *instr, char *outstr);
