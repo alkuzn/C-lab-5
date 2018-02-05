@@ -9,7 +9,7 @@ char * randomWords(char * in, char *out)
 		return in;
 	}
 		
-	char* arrPtr[N];
+	char* arrPtr[SIZE];
 	int count = 0;
 	int flag = OUT;
 	int size=strlen(in);

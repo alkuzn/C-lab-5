@@ -3,10 +3,10 @@
 
 int main()
 {
-	char in[N] = { 0 };
-	char out[N] = { 0 };
+	char in[SIZE] = { 0 };
+	char out[SIZE] = { 0 };
 	printf("Enter a string:\n");
-	if (fgets(in, N, stdin)==NULL)
+	if (fgets(in, SIZE, stdin) == NULL)
 	{
 		printf("Invalid input!\n");
 		return 1;

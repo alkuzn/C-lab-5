@@ -3,8 +3,8 @@
 
 int main()
 {
-	char instr[N] = { 0 };
-	char outstr[N] = { 0 };
+	char instr[SIZE] = { 0 };
+	char outstr[SIZE] = { 0 };
 	FILE *fpInput = fopen("input.txt", "rt");
 	FILE *fpOutput = fopen("output.txt", "wt");
 	if (fpInput == NULL || fpOutput == NULL)
@@ -12,7 +12,7 @@ int main()
 		puts("File open error!");
 		return 1;
 	}
-	while (fgets(instr, N, fpInput) != NULL)
+	while (fgets(instr, SIZE, fpInput) != NULL)
 	{
 		fputs(randomWords(instr,outstr), fpOutput);
 		if(*instr!='\n')
