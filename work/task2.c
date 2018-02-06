@@ -4,10 +4,11 @@
 #include <string.h>
 #include "task2.h"
 
-void clearMatrix(char arr[M]) {
-	for (int i = 0; i < (M * M); i++)
+void clearMatrix(char(*arr)[M]) {
+	for (int i = 0; i < M; i++)
 	{
-		arr[i] = ' ';
+		for (int j = 0; j < M; j++)
+			arr[i][j] = ' ';
 	}
 }
 
