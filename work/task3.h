@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#define N 256
+#define L 256
 #define K 50
 #define IN 1
 #define OUT 0
