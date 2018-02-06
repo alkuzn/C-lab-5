@@ -4,7 +4,7 @@
 #include <string.h>
 #include "task2.h"
 
-void clearMatrix(char *arr) {
+void clearMatrix(char arr[M]) {
 	for (int i = 0; i < (M * M); i++)
 	{
 		arr[i] = ' ';
