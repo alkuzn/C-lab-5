@@ -18,12 +18,12 @@ int main() {
 
 	char in[N][N] = { 0 };
 	char out[N][N] = { 0 };
-	char *str[N] = { in };
+	//char *str[N] = { in };
 	int i = 0;
 
 	while (fgets(in[i], N, inp))
 	{
-		str[i] = in + i;
+		//str[i] = in + i;
 		if (in[i][strlen(in[i]) - 1] == '\n')
 			in[i][strlen(in[i]) - 1] = '\0';
 		i++;
