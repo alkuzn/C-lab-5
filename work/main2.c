@@ -4,12 +4,10 @@
 #include <time.h>
 #include "task2.h"
 
-#define M 25
-#define N 30
 
 int main()
 {
-	char arr[M][N] = {0};
+	char arr[M][M] = {0};
 	int flag = 0;
 
 	while (1)
