@@ -31,12 +31,12 @@ char * randomWords(char * in, char *out)
 
 	for (int i = 0; i < j; i++)
 	{
-		int j = rand() % (strlen(pOut) + 1);
-		if (j != i)
+		int k = (rand() % j - 1) + 1;
+		if (k != i)
 		{
-			int buff = pOut[i];
-			pOut[i] = pOut[j];
-			pOut[j] = buff;
+			char *buff = pOut[i];
+			pOut[i] = pOut[k];
+			pOut[k] = buff;
 		}
 	}
 
