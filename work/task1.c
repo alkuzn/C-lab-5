@@ -4,7 +4,7 @@
 #include <string.h>
 
 //Перемешивание массива указателей но char
-char *mixP(char *in[], int size)
+void mixP(char *in[], int size)
 {
 	srand(time(NULL));
 	int i, k;
@@ -17,7 +17,7 @@ char *mixP(char *in[], int size)
 		in[i] = in[k];
 		in[k] = buf;
 	}
-	return in;
+	//return in;
 }
 
 char * randomWords(char * in, char *out)
