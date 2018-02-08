@@ -2,6 +2,7 @@
 #include "task2.h"
 #include <string.h>
 #include <time.h>
+#include <stdlib.h>
 #include <stdio.h>
 #define ITER 50
 
