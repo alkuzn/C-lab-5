@@ -58,7 +58,7 @@ char *mixLine(char *instr, char * outstr) {
 	char wordOut[N] = { '0' };
 	int wordStart = 0;
 	int wordInCounter = 0;
-	for (int i = 0; i < strlen(instr); i++)
+	for (int i = 0; i < strlen(instr) + 1; i++)
 	{
 		if ((instr[i] != ' ' || instr[i] != '\n' || instr[i] != '\0') && flag == OUT)
 		{
