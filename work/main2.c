@@ -1,31 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "task2.h"
-
-#define SIZE 50
-
-
-
 
 
 int main()
 {
 	char arr[SIZE][SIZE + 1];
+	clock_t now;
+
 	while (1)
-	{
-		
-		//clearMatrix(arr);	//«аполнение двумерного массива пробелами и прописывание в конце каждой строки '\0' 
-		clearMatrix(arr, SIZE);	//«аполнение двумерного массива пробелами и прописывание в конце каждой строки '\0' 
-
+	{		
 		srand(time(NULL));
-		//fillMatrix(arr, SIZE);	//«аполнение левой верхней части массива звЄздочками в случайном пор€дке
-		for (int i = 0; i < SIZE; i++)
-		{
-			printf("%s\n", arr[i]);
-		}
-
-
+		clearMatrix(arr);	//«аполнение двумерного массива пробелами и прописывание в конце каждой строки '\0' 		
+		fillMatrix(arr);	//«аполнение левой верхней части массива звЄздочками в случайном пор€дке
+		setMatrix(arr);
+		system("cls||clear");
+		//system("cls");	//очистка экрана консоли
+		printMatrix(arr);	//ѕечать матрицы
+		//ќрганизаци€ задержки
+		now = clock();
+		while (clock() < now + CLOCKS_PER_SEC);
 	}
 	return 0;
 }

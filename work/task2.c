@@ -3,73 +3,54 @@
 #include <string.h>
 #include <time.h>
 #include <stdio.h>
-#define ITER 3
+#define ITER 50
 
-void clearMatrix(char *arr[], int size)	//заполнение двумерного массива(матрицы) пробелами
+void clearMatrix(char(*arr)[SIZE + 1])	//заполнение двумерного массива(матрицы) пробелами
 {
-	/*char buf[51] = { ' ' };
-	for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i < SIZE ; i++)
 	{
-		strcpy(arr[i], buf);
-	}*/
-	for (int i = 0; i < size; i++)
-	{
-		for (int j = 0; j < size; j++)
+		for (int j = 0; j < SIZE; j++)
 		{
 			arr[i][j] = ' ';
 		}
-		arr[i][size] = '\0';
+		arr[i][SIZE] = '\0';
 	}
 }
-/*
-void fillMatrix(char *arr[], int size)	//заполнение верхнего левого квадранта матрицы звездочками
+
+void fillMatrix(char(*arr)[SIZE + 1])	//заполнение верхнего левого квадранта матрицы звездочками
 {
-	int h = size / 2;
-	int w = size / 2 - 1;
-	for (int i = 0, j = 0, count = 0; count < ITER; count++)
+	int h = SIZE / 2;
+	int w = SIZE / 2;
+	for (int i = 0, j = 0, iter=0; iter < ITER; iter++)
 	{
-		i = rand() % (w - 5);
-		j = rand() % (h - 5);
-		int flag = 0;
-		for (int y = j; y < (j + 4); y++)
-		{
-			for (int x = i; y < (j + 4); y++)
-			{
-				if (arr[j][i] == '*')
-				{
-					flag = 1;
-					break;
-				}
-
-			}
-			if (flag == 1)
-			{
-				break;
-			}
-		}
-		if (flag == 1)
-		{
-			flag = 0;
-			continue;
-		}
-		else
-		{
-			arr[j + 1][i + 2] = '*';
-			arr[j + 2][i + 3] = '*';
-			arr[j + 2][i + 1] = '*';
-			arr[j + 3][i + 2] = '*';
-		}
+		i = rand() % w;
+		j = rand() % h;
+		arr[j][i] = '*';		
 	}
 }
-*/
-/*
-void setMatrix(char(*arr)[M])	//копирование элементов в другие области матрицы
-{
 
+
+void setMatrix(char(*arr)[SIZE + 1])	//копирование элементов в другие области матрицы
+{
+	for (int i = 0; i < SIZE/2; i++)
+	{
+		for (int j = SIZE - 1, x = 0; x < SIZE / 2; j--, x++)
+		{
+			arr[i][j] = arr[i][x];
+		}
+	}
+	for (int i = 0, j = SIZE - 1; i < (SIZE / 2); i++, j--)
+	{
+		strcpy(arr[j], arr[i]);
+	}
 }
 
-void printMatrix(char(*arr)[M])	//печать матрицы
-{
 
+
+void printMatrix(char(*arr)[SIZE + 1])	//печать матрицы
+{
+	for (int i = 0; i < SIZE; i++)
+	{
+		printf("%s\n", arr[i]);
+	}
 }
-*/

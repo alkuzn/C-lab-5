@@ -1,7 +1,7 @@
-//#define SIZE 51
-void clearMatrix(char *arr[], int size);	//заполнение двумерного массива(матрицы) пробелами
-//void clearMatrix(char *arr[]);	//заполнение двумерного массива(матрицы) пробелами
+#define SIZE 51
 
-//void fillMatrix(char *arr[]);	//заполнение верхнего левого квадранта матрицы звездочками
-//void setMatrix(char(*arr)[M]);	//копирование элементов в другие области матрицы
-//void printMatrix(char(*arr)[M]);	//печать матрицы
+
+void clearMatrix(char(*arr)[SIZE + 1]);	//заполнение двумерного массива(матрицы) пробелами
+void fillMatrix(char(*arr)[SIZE + 1]);	//заполнение верхнего левого квадранта матрицы звездочками
+void setMatrix(char(*arr)[SIZE + 1]);	//копирование элементов в другие области матрицы
+void printMatrix(char(*arr)[SIZE + 1]);	//печать матрицы
