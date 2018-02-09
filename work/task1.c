@@ -5,7 +5,7 @@
 
 void *randomWords(char *in, char *out)
 {
-	char *arrPtr[PSIZE] = { '0' };
+	char *arrPtr[SIZE] = { '0' };
 	int flag = OUT;
 	int count = 0;
 	srand(time(0));
