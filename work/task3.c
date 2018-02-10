@@ -4,85 +4,108 @@
 #include<ctype.h>
 #include<time.h>
 
-#define S 40
+#define S 200
 
 char * mixChars(char *in, char *out)
 {
 	int i = 0, j=0;
 	int count_char = 0;
 	int rdig = 0;
-	char temp[S] = {0};
 	char temp_ch;
 	srand(time(0));
 	
-	//printf("mixCh_in %s|\n", in);
-	while (in[i] != ' ' && in[i] != '\0')
+	int len = strlen(in);
+	for (int i = 0; i < len; i++)
 	{
-		temp[i] = in[i];
-		i++;
+		out[i] = in[i];
+
+	}
+	
+	len = strlen(in);
+	if (len < 4)
+	{
+		*out = *in;
+		return out;
+	}
+
+	for (i = 0; i < len; i++)
+	{
+		out[i]=in[i];
 		count_char++;
 	}
-	temp[i] = ' ';
-	count_char--;
-	
-	while (i > 1)
+	do
 	{
-		for (j = 1; j < count_char; j++)
+		while (len > 1)
 		{
-			rdig = rand() % count_char;
-			if (rdig == 0)
-				continue;
-			else
+			for (j = 1; j < len; j++)
 			{
-				temp_ch = temp[j];
-				temp[j] = temp[rdig];
-				temp[rdig] = temp_ch;
+				rdig = rand() % len;
+				if (rdig == 0)
+					continue;
+				else
+				{
+					temp_ch = out[j];
+					out[j] = out[rdig];
+					out[rdig] = temp_ch;
+				}
 			}
+			len--;
 		}
-		i--;  
-	}
-	//printf("mixCh_temp %s|\n", temp);
-	for (j = 0; j <= count_char; j++)
-	{
-		out[j] = temp[j];
-	}
-	//printf("mixCh_out %s|\n\n", out);
-	out[j++] = ' ';
-	return &out[j];
+	} while (strcmp(in, out) == 0);
+	
+	return out;
 }
 
 char * mixLine(char *in, char *out)
 {
-	char  *in_ch[S];
-	char  *out_ch[S];
 	char word[S];
+	char *out_temp=out;
+	char temp[S] = { 0 };
+	int count = 0;
 	int count_p = 0;
 	int flag = 0;
 	int len = 0;
+	int i = 0, j=0,k = 0;
+	int len_str = 0, len_temp = 0;;
 
-	len = strlen(in);
+	len_str = strlen(in);
+	in[len_str] = ' ';
 
-	for (int i = 0; i < len; i++)
+	while (in[i])
 	{
 		if (in[i] != ' ' && flag == 0)
 		{
-			in_ch[count_p] = &in[i];
-			count_p++;
 			flag = 1;
+			len = 1;
+			word[j++] = in[i];
 		}
-		else if (in[i] == ' ')
-			flag = 0;
-	}
-
-	for (int i = 0; i < count_p; i++)
-	{
-		out = mixChars(in_ch[i], out);
-		if (count_p - i == 1)
+		else if ((in[i] == ' ') && (flag == 1))
 		{
-			out--;
-			*out = '\0';
+			flag = 0;
+			if (j == len)
+			{
+				count++;
+				word[j++] = '\0';
+						
+				mixChars(word, temp);
+				for (int p = 0; p < j-1; p++)
+			    {
+					*out = temp[p];
+					out++;
+				}
+				*out = ' ';
+				out++; 
+		 	}
+			len = j = 0;
 		}
-	}
-	out-= strlen(in)-1;
-	return &out;
+		else if (in[i] != ' ' && flag == 1)
+		{
+			word[j++] = in[i];
+			len++;
+		}
+
+		i++;
+	}	
+	*out = '\0';
+	return out_temp;
 }
