@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include"task3.h"
 
-#define S 40
+#define S 200
 
 int main()
  {
@@ -30,8 +30,7 @@ int main()
 	{
 		len_str = strlen(in);
 		in[len_str - 1] = '\0';
-		mixLine(in, out);
-		printf("%s\n", out);
+		printf("STR:%s\n", mixLine(in, out));
 		count++;
 		len_str = 0;
 	}
