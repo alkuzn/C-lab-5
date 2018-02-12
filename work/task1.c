@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>  //для rand() & strcmp
+#include <ctype.h> //для isspace()
 #include <time.h>
 #include "task1.h"
 #define ATT_NUM 100

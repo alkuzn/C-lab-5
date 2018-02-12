@@ -1,5 +1,6 @@
 #include "task2.h"
 #include <stdio.h>
+#include <stdlib.h>  //для rand()
 #define SPACE ' '
 
 void clearMatrix(char(*arr)[M]) // очистка матрицы (заполнение матрицы пробелами)
