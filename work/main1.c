@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "task1.h"
-#define LENSTR 512
+#define SIZE 512
 
 int main()
 {
-	char inStr[LENSTR];
-	char outStr[LENSTR];
+	char inStr[SIZE];
+	char outStr[SIZE];
 	printf("Enter the string to process: ");
-	fgets(inStr, LENSTR, stdin);
+	fgets(inStr, SIZE, stdin);
 	randomWords(inStr, outStr);
 	printf("%s\n", outStr);
 	return 0;

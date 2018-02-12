@@ -23,9 +23,12 @@ char *mixP(char *in[], int size)
 
 char * randomWords(char * in, char *out)
 {
-	char *arrp[SIZE];
+	char *arrp[128];
 	int count = 0;
-	in[strlen(in) - 1] = '\0';
+	if (in[strlen(in) - 1] == '\n')
+	{
+		in[strlen(in) - 1] = '\0';
+	}
 	for (int i = 0; in[i] != 0; i++)
 	{
 		if (in[i] != ' ' && in[i] != '\0' && (i == 0 || in[i - 1] == ' '))
