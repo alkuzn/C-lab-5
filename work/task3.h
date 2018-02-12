@@ -1,3 +1,3 @@
 char *mixChars(char *in,char *out);
 char *mixLine(char *instr,char *outstr);
-#define NUM 2000
+#define NUM 500

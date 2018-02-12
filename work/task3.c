@@ -7,12 +7,15 @@
 
 char *mixChars(char *in,char *out)
 {
+    char wordIn[20]={0};
     int j=1,len=0,index=1;
     char temp=0;
-    char *Pin=in;
+    strcpy(wordIn, in);
+    
+   // printf("wordIn: %s\n", wordIn);
     
     
-    len=strlen(in)-2;
+    len=strlen(wordIn)-2;
     
     
     for(j=1;j<len;j++) {
@@ -21,17 +24,21 @@ char *mixChars(char *in,char *out)
             index=rand() % len+1;
       
         
+        
         //swap
-        temp = in[j];
-        in[j] = in[index];
-        in[index] = temp;
+        temp = wordIn[j];
+        wordIn[j] = wordIn[index];
+        wordIn[index] = temp;
         
     }
     
+  //   printf("after mix Chars wordIn: %s\n", wordIn);
     
-    out=Pin;
     
-  //   printf("in: %s out: %s\n",in,out);
+    strcpy(out,wordIn);
+    
+    
+  //  printf("in: %s out: %s\n",in,out);
     
     return out;
 
@@ -41,11 +48,11 @@ char *mixChars(char *in,char *out)
 char *mixLine(char *instr,char *outstr)
 {
  
-    char wordIn[NUM]={0};
-    char wordOut[NUM]={0};
+    char temp[NUM]={'\0'};
+    char wordOut[NUM]={'\0'};
     char *P_out=outstr;
-    char *p_wordOut=NULL;
-    
+    char *p_wordOut=wordOut;
+    char *P_temp=temp;
     
     int i=0,j=0;
     int len=0;
@@ -69,9 +76,6 @@ char *mixLine(char *instr,char *outstr)
     if(index+1<strlen(instr))
         numWords--;
     
-  
-    
-    
     
     char *words[NUM]={0};
    
@@ -86,46 +90,23 @@ char *mixLine(char *instr,char *outstr)
         i++;
     }
   
-   
-
     char *p_words=NULL;
 
-    
     for(i=0;i<numWords;i++)
     {
         p_words=words[i];
         wordOut[i]=*p_words;
-       
         
- 
-   mixChars(p_words,wordOut);
-      
-
-        for(j=0;j<numWords;j++)
-           P_out=&wordOut[j];
         
- 
-        
-        *P_out='\0';
-        *P_out='\n';
-     //   *P_out++=' ';
-       
-
-    if(*p_words==p_words[strlen(p_words)])
-       *p_words++=' '; //??
-     
-        
-        strcat(P_out,p_words);
-    }
-    
+     mixChars(p_words,wordOut);//в wordOut хранятся уже перевернутые слова
   
-  
-
-   outstr=P_out;
+        
+      //    wordOut[i]=' ';//при попытке добавиь пробел, затираются символы, причем неравномерно
+      //  i++;
     
- 
-   printf("str: %s\n",(char*)outstr);
-    
-    
+      strcat(temp,wordOut); //здесь копируем в temp слова из wordOut
+}
+    printf("temp:%s", temp);
+    strcat(outstr,temp);
     return outstr;
 }
