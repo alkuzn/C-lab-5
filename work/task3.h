@@ -1,1 +1,0 @@
-char *mixLine(char *instr, char * outstr);
