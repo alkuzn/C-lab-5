@@ -1,10 +1,8 @@
+#define SIZE 512
 #include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
 //Перемешивание массива указателей но char
-void mixP(char *in[], int size)
+char *mixP(char *in[], int size)
 {
 	srand(time(NULL));
 	int i, k;
@@ -17,17 +15,14 @@ void mixP(char *in[], int size)
 		in[i] = in[k];
 		in[k] = buf;
 	}
-	//return in;
+	return in;
 }
 
 char * randomWords(char * in, char *out)
 {
-	char *arrp[128];
+	char *arrp[SIZE];
 	int count = 0;
-	if (in[strlen(in) - 1] == '\n')
-	{
-		in[strlen(in) - 1] = '\0';
-	}
+	in[strlen(in) - 1] = '\0';
 	for (int i = 0; in[i] != 0; i++)
 	{
 		if (in[i] != ' ' && in[i] != '\0' && (i == 0 || in[i - 1] == ' '))

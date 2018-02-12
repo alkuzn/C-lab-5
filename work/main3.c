@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <malloc.h>
 #include <time.h>
-#include "task3.h"
 #define SIZEM 128
 #define LSTR 512
 
