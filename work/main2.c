@@ -11,15 +11,15 @@ int main()
 	clock_t now;
 
 	while (1)
-	{
+	{		
 		srand(time(NULL));
 		clearMatrix(arr);	//Заполнение двумерного массива пробелами и прописывание в конце каждой строки '\0' 		
 		fillMatrix(arr);	//Заполнение левой верхней части массива звёздочками в случайном порядке
 		setMatrix(arr);
-		system("cls||clear");
+		//system("cls||clear");
 		//system("cls");	//очистка экрана консоли
 		printMatrix(arr);	//Печать матрицы
-							//Организация задержки
+		//Организация задержки
 		now = clock();
 		while (clock() < now + CLOCKS_PER_SEC);
 	}

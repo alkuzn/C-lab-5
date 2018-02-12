@@ -8,7 +8,7 @@
 
 void clearMatrix(char(*arr)[SIZE + 1])	//заполнение двумерного массива(матрицы) пробелами
 {
-	for (int i = 0; i < SIZE; i++)
+	for (int i = 0; i < SIZE ; i++)
 	{
 		for (int j = 0; j < SIZE; j++)
 		{
@@ -22,18 +22,18 @@ void fillMatrix(char(*arr)[SIZE + 1])	//заполнение верхнего левого квадранта мат
 {
 	int h = SIZE / 2;
 	int w = SIZE / 2;
-	for (int i = 0, j = 0, iter = 0; iter < ITER; iter++)
+	for (int i = 0, j = 0, iter=0; iter < ITER; iter++)
 	{
 		i = rand() % w;
 		j = rand() % h;
-		arr[j][i] = '*';
+		arr[j][i] = '*';		
 	}
 }
 
 
 void setMatrix(char(*arr)[SIZE + 1])	//копирование элементов в другие области матрицы
 {
-	for (int i = 0; i < SIZE / 2; i++)
+	for (int i = 0; i < SIZE/2; i++)
 	{
 		for (int j = SIZE - 1, x = 0; x < SIZE / 2; j--, x++)
 		{
