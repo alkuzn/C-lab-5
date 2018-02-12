@@ -1,4 +1,5 @@
 #define SIZE 512
+#include <string.h>
 #include <time.h>
 
 //Перемешивание массива указателей но char
