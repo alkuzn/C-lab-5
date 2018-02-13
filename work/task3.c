@@ -28,7 +28,7 @@ char *mixChars(char *in, char *out)
 
 char *mixLine(char *instr, char * outstr)	//перемешивание для целой строки
 {
-	for (int i = 0; instr[i - 1] != '\n' && instr[i - 1] != '\0'; i++)
+	for (int i = 0; instr[i] != '\n' && instr[i] != '\0'; i++)
 	{
 		if (instr[i] != ' ' && (i == 0 || instr[i - 1] == ' '))
 		{
