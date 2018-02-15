@@ -9,14 +9,14 @@
     
 int main()
 {
-     srand((unsigned)time(NULL));
+    srand((unsigned)time(NULL));
     
-    char strIn[NUM]={0};
-    char strOut[NUM]={0};
-    
+    char strIn[MAXSIZE]={'\0'};
+    char strOut[MAXSIZE]={'\0'};
+ 
     FILE *input_F = fopen ("in.txt", "r");
    FILE *output_F = fopen("out.txt", "w");
-   // FILE *output_F=stdin;
+ //   FILE *output_F=stdin;
     
     if (input_F == NULL ||output_F==NULL)
     {
@@ -25,17 +25,15 @@ int main()
     }
     
     
-    while(fgets(strIn,NUM,input_F)!=NULL)
+    while(fgets(strIn,MAXSIZE,input_F)!=NULL)
     {
-        fputs(mixLine(strIn,strOut),output_F);
-        if(*strIn!='\n')
-            fputc('\n',output_F);
+        fprintf(output_F, "%s\n", mixLine(strIn,strOut));
+ 
     }
-    
     
     fclose(input_F);
     fclose(output_F);
-    
+
     
     return 0;
 }

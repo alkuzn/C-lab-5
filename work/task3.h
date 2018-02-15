@@ -1,3 +1,4 @@
 char *mixChars(char *in,char *out);
 char *mixLine(char *instr,char *outstr);
-#define NUM 500
+
+#define MAXSIZE 1000
