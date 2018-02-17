@@ -3,9 +3,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-#include <term.h>
-
+//#include <term.h>
 #define M 40
+
 
 
 int main() {
@@ -20,7 +20,8 @@ int main() {
         fillMatrix(arr);
         
         setMatrix(arr);
-        system ("clear");
+
+      system ("clear");
         printMatrix(arr);
         sleep(1);
     

@@ -11,9 +11,9 @@ int main()
 {
     srand((unsigned)time(NULL));
     
-    char strIn[MAXSIZE]={'\0'};
-    char strOut[MAXSIZE]={'\0'};
- 
+    char strIn[MAXSIZE]={0};
+    char strOut[MAXSIZE]={0};
+
     FILE *input_F = fopen ("in.txt", "r");
    FILE *output_F = fopen("out.txt", "w");
  //   FILE *output_F=stdin;
@@ -34,6 +34,10 @@ int main()
     fclose(input_F);
     fclose(output_F);
 
+    for(int i=0;i<strlen(strIn);i++)
+    {
+        strIn[i]='\0';
+    }
     
     return 0;
 }

@@ -7,70 +7,106 @@
 #define IN 1
 
 
-
 char *mixChars(char *in,char *out)
 {
-    int i=1;
-    int index=1;
-    int count=0;//счетчик букв
-    int rnd=1;//позиция случайной буквы в слове
-   char temp='\0';
-   
-    while(in[count]!=' ' && in[count]!='\0')
-        count++;
-    
-    
-    for(i=0;i<count;i++)
-        out[i]=in[i];
-    
-    if(count<=3)
-        return out;
-    
-    else{
+    int j=1,len=0,index=1;
+    char temp=0;
+    char *Pin=in;
+ 
+    len=strlen(in)-2;//кол-во перемешиваемых символов
 
-        count--;
-        do{
-            for(index=1;index<count;index++)
-            {
-                while(rnd==index)
-                rnd=rand()%count;
-                
-                temp=out[index];
-                out[index]=out[rnd];
-                out[rnd]=temp;
-                
-            
-            }
-        }while (strcmp(in,out)==0);
+    for(j=1;j<len;j++) {
+        index = j;
+        while(index==j)
+            index=rand() % len+1;
         
-        return out;
+        //swap
+        temp = in[j];
+        in[j] = in[index];
+        in[index] = temp;
     }
-    
-    
-}
 
+    out=Pin;
+    
+    //   printf("in: %s out: %s\n",in,out);
+    
+    return out;
+}
 
 char *mixLine(char *instr,char *outstr)
 {
-   if(instr[strlen(instr)-1]=='\n')
-       instr[strlen(instr)-1]='\0';
+    char wordIn[MAXSIZE]={0};
+    char wordOut[MAXSIZE]={0};
+    char *P_out=outstr;
+    char *p_wordOut=NULL;
+    char space=' ';
     
-    int flag=0;
-    int i=0;
-
     
-    while (*instr) {
-        if(*instr!=' ' && flag==0)
-        {
-            flag=1;
-        mixChars(instr, outstr);
-        }
-        else if(instr[i]==' '&& flag==1)
-        {
-            flag=0;
-            *outstr=' ';
-        }
+    int i=0,j=0;
+    int len=0;
+    len=strlen(instr);
+    
+    
+    if(instr[len-1]=='\0')
+        instr[len-1]='\n';
+    
+    int numWords=1;
+    int index=0;
+    
+    for(int i=1 ;i<strlen(instr);i++)
+    {
+        if( instr[i-1]==' ')
+            continue;
+        else if(instr[i]==' ')
+            numWords++;
+        else index=i;
+    }
+    if(index+1<strlen(instr))
+        numWords--;
+    
+    char *words[MAXSIZE]={0};
+    
+    char *sep=" ;:.,!?";
+    words[i]=strtok(instr,sep);
+    
+    i++;
+    
+    
+    while(words[i-1]!=NULL)
+    {
+        words[i]=strtok(NULL,sep);
         i++;
     }
-    return outstr;
-}
+    
+    char *p_words=NULL;
+    
+    
+    for(i=0;i<numWords;i++)
+    {
+        p_words=words[i];
+            wordOut[i]=*p_words;
+    mixChars(p_words,wordOut);
+        
+        for(j=0;j<numWords;j++)
+        P_out=&wordOut[j];
+        *P_out='\0';
+        *P_out='\n';
+        
+        
+        if(*p_words==p_words[strlen(p_words)])
+        *p_words++=' '; //??
+        
+        
+        
+        strcat(P_out, &space);
+        strcat(P_out,p_words);
+    }
+        
+        outstr=P_out;
+        
+     //   printf("str: %s\n",(char*)outstr);
+   
+        return outstr;
+    
+        
+    }
