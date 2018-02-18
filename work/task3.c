@@ -17,13 +17,13 @@ char *mixLine(char *instr, char * outstr)
 	char bufout[20] = { 0 };
 	while (instr[i] != '\0')
 	{
-		if (instr[i] != ' ' && flag == OUT)
+		if (instr[i] != ' ' && instr[i] != '\0' && flag == OUT)
 		{
 			flag = IN;
 			bufin[j++] = instr[i];
 			count++;
 		}
-		else if (instr[i] != ' ' && flag == IN)
+		else if (instr[i] != ' ' && instr[i] != '\0' && flag == IN)
 		{
 			bufin[j++] = instr[i];
 			count++;
@@ -41,11 +41,17 @@ char *mixLine(char *instr, char * outstr)
 		}
 		i++;
 	}
-	bufin[j] = '\0';
-	mixChars(bufin, bufout);
-	for (j = 0; j < count; j++)
-		outstr[n++] = bufout[j];
-	outstr[n] = '\0';
+	if (instr[i] == '\0' && flag == IN)
+	{
+		flag = OUT;
+		bufin[j] = '\0';
+		mixChars(bufin, bufout);
+		for (j = 0; j < count; j++)
+			outstr[n++] = bufout[j];
+		j = 0;
+		count = 0;
+		outstr[n++] = '\0';
+	}
 	return outstr;
 }
 
