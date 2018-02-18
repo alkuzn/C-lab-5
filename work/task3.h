@@ -1,7 +1,7 @@
 /*
  * task3.h
  *
- *  Created on: 19 янв. 2018 г.
+ *  Created on: 12 февр. 2018 г.
  *      Author: michael
  */
 
