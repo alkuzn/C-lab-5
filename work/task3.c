@@ -9,6 +9,9 @@
 
 char *mixLine(char *instr, char * outstr)
 {
+	if (instr[strlen(instr) - 1] == '\n')
+		instr[strlen(instr) - 1] = '\0';
+
 	int flag = OUT;
 	int i = 0, j = 0;
 	int n = 0;
@@ -52,13 +55,17 @@ char *mixLine(char *instr, char * outstr)
 		count = 0;
 		outstr[n++] = '\0';
 	}
+
+	while (outstr[strlen(outstr) - 1] == ' ')
+	{
+		outstr[strlen(outstr) - 1] = '\0';
+	}
 	return outstr;
 }
 
 
 char *mixChars(char *in, char *out)
 {
-	srand(time(0));
 	int i = 0;
 	int sword = 0;
 	int j = 0;
