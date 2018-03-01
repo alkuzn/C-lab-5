@@ -11,7 +11,6 @@
 
 char *mixLine(char *instr, char * outstr)
 {
-	char *pointer = outstr;
 	int n = 0;
 	int count = 0;
 	char in[SIZE] = { 0 };
@@ -59,31 +58,25 @@ char *mixLine(char *instr, char * outstr)
 		}
 		outstr[n++] = '\0';
 	}
-	return pointer;
+	return outstr;
 }
-
 
 char *mixChars(char *in, char *out)
 {
-	int i = 0;
-	int sword = 0;
-	int j = 0;
-	char cword = 0;
-
-	while (in[sword] != '\0')
+	char tmp = 0;
+	int len = strlen(in);
+	for (int i = 0; i <= len; i++)
+		out[i] = in[i];
+	int randomCh = 0;
+	if (len <= 3)
+		return out;
+	for (int i = 1; i < len - 1; i++)
 	{
-		out[sword] = in[sword++];
-	}
-	out[sword] = '\0';
-	if (sword > 3)
-	{
-		for (int i = 1; i < sword - 1; i++)
-		{
-			j = rand() % (sword - 2) + 1;
-			cword = out[i];
-			out[i] = out[j];
-			out[j] = cword;
-		}
+		randomCh = rand() % (len - 2) + 1;
+		tmp = out[i];
+		out[i] = out[randomCh];
+		out[randomCh] = tmp;
 	}
 	return out;
 }
+
