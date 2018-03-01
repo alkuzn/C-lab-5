@@ -45,8 +45,6 @@ char *mixLine(char *instr, char * outstr)
 		}
 		i++;
 	}
-	if (outstr[n - 1] == ' ')
-		outstr[n - 1] = '\0';
 	if (instr[i] == '\0'&& flag == IN)
 	{
 		in[j] = '\0';
@@ -58,6 +56,8 @@ char *mixLine(char *instr, char * outstr)
 		}
 		outstr[n++] = '\0';
 	}
+	else if (outstr[n - 1] == ' ')
+		outstr[n - 1] = '\0';
 	return outstr;
 }
 
