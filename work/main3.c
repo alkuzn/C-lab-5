@@ -12,9 +12,13 @@ int main()
 {
 	srand((unsigned)time(NULL));
 
-	char str_in[MAXSIZE] = "mad max";
-	char str_out[MAXSIZE] = {'\0'};
-	
+	char str_in[MAXSIZE] = { 0 };
+	char str_out[MAXSIZE] = {0};
+	for (int i = 0; i < MAXSIZE-1; i++)
+	{
+		str_out[i] = 0;
+	}
+
 	FILE *fp_in = fopen("in.txt", "r");
 	FILE *fp_out = fopen("out.txt", "w");
 	//   FILE *output_F=stdin;
@@ -33,7 +37,8 @@ int main()
 
 	fclose(fp_in);
 	fclose(fp_out);
+
+	 mixLine(str_in, str_out);
 	
-	//printf("%s\n", mixLine(str_in, str_out));
 	return 0;
 }
