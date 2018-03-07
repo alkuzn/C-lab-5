@@ -1,4 +1,7 @@
 #include <time.h>
+#include "task1.h" 
+#include <time.h>
+#include <string.h>
 
 char * randomWords(char *in, char *out)
 {
@@ -27,7 +30,8 @@ char * randomWords(char *in, char *out)
 		buf[num] = chbuf;
 	}
 
-	for (int i = 0, y = 0; i < strlenght; ++i)
+	int i = 0;
+	for (int  y = 0; i < strlenght && y < count; ++i)
 	{
 		if (buf[y][0] != '\ ' && buf[y][0] != '\0')
 		{
@@ -39,6 +43,6 @@ char * randomWords(char *in, char *out)
 			y++;
 		}
 	}
-	out[strlenght] = '\0';
+	out[i] = '\0';
 	return out;
 }

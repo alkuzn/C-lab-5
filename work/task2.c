@@ -1,7 +1,7 @@
 #include "task2.h"
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <time.h>
 
 void clearMatrix(char(*arr)[M])
 {

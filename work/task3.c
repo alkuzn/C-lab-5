@@ -1,5 +1,7 @@
-
-
+#include <string.h>
+#include <stdlib.h>
+#include "task3.h"
+#include <time.h>
 
 char *mixChars(char *in, char *out)
 {
