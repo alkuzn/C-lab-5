@@ -7,7 +7,7 @@ char *mixChars(char *in, char *out)
 	char buf;
 	int i = 0;
 	while (out[i++] = in[i]);
-	for (i = 1; i < lenght - 1; ++i)
+	for (i = 1; i < lenght - 2; ++i)
 	{
 		rand_pos = 1 + rand() % (lenght - 2);
 		buf = out[rand_pos];
@@ -23,32 +23,39 @@ char *mixLine(char *in, char *out)
 	char word[256] = {0};
 	int begin = 0;
 	int inword = 0, count = 0, strlenght = strlen(in);
-	for (int i = 0; i < strlenght + 1; ++i)
+	int y = 0;
+	int i = 0;
+	for (i = 0; i < strlenght; ++i)
 	{
-		if ((in[i] != ' ') && !inword)
+		if ((in[i] != ' ' && in[i] != '\n') && !inword)
 		{
+			word[y++] = in[i];
 			inword = 1;
 			begin = i;
 		}
-		else if ((in[i] == ' ' || in[i] == '\0') && inword)
+		else if ((in[i] != ' ' && in[i] != '\n') && inword)
 		{
-			int y = 0;
-			for (int  f = begin; (f < i); ++y, ++f)
-				word[y] = in[f];
-			if (word[y - 1] == '\n')word[y- 1] = '\0';
-			else word[y] = '\0';
+			word[y++] = in[i];
+		}else if ((in[i] == ' ') && inword)
+		{
+			word[y] = '\0';
 			mixChars(word, buf);
+			for (int f = begin, z=0; f < i; ++z, ++f)
+				out[f] = buf[z];
 			y = 0;
-			for (int f = begin; f < i; ++y, ++f)
-				out[f] = buf[y];
 			out[i] = ' ';
 			inword = 0;
-		}
-		else if (in[i] == ' ')out[i] = ' ';
+		}else out[i] = ' ';
 	}
 	if (inword)
-		out[strlenght - 1] = '\0';
-	else
-		out[strlenght] = '\0';
+	{
+		word[y] = '\0';
+		mixChars(word, buf);
+		int f  = begin ;
+		for (int z = 0; f < i; ++z, ++f)
+			out[f] = buf[z];
+		out[f] = '\0';
+	}
+	else out[i] = '\0';
 	return out;
 }
